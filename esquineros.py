@@ -12,9 +12,6 @@ def esquina_inferior_derecha(listado_gids):
         uri.setConnection("localhost", "5432", "gislocal", "postgres", "raul")
         uri.setDataSource("",qsql,"geom","","id")
         resultado = QgsVectorLayer(uri.uri(), "resultado_query", "postgres")
-        crs = resultado.crs()
-        crs.createFromId(32613)
-        resultado.setCrs(crs)
         if not resultado.isValid:
             print 'error'
         else:
@@ -37,9 +34,6 @@ def esquina_superior_derecha(listado_gids):
         uri.setConnection("localhost", "5432", "gislocal", "postgres", "raul")
         uri.setDataSource("",qsql,"geom","","id")
         resultado = QgsVectorLayer(uri.uri(), "resultado_query", "postgres")
-        crs = resultado.crs()
-        crs.createFromId(32613)
-        resultado.setCrs(crs)
         if not resultado.isValid:
             print 'error'
         else:
@@ -62,9 +56,6 @@ def esquina_inferior_izquierda(listado_gids):
         uri.setConnection("localhost", "5432", "gislocal", "postgres", "raul")
         uri.setDataSource("",qsql,"geom","","id")
         resultado = QgsVectorLayer(uri.uri(), "resultado_query", "postgres")
-        crs = resultado.crs()
-        crs.createFromId(32613)
-        resultado.setCrs(crs)
         if not resultado.isValid:
             print 'error'
         else:
@@ -88,9 +79,6 @@ def esquina_superior_izquierda(listado_gids):
         uri.setConnection("localhost", "5432", "gislocal", "postgres", "raul")
         uri.setDataSource("",qsql,"geom","","id")
         resultado = QgsVectorLayer(uri.uri(), "resultado_query", "postgres")
-        crs = resultado.crs()
-        crs.createFromId(32613)
-        resultado.setCrs(crs)
         if not resultado.isValid:
             print 'error'
         else:
@@ -122,9 +110,9 @@ for t in filas_tabla:
 
 #creamos la capa que va a almacenar los puntos de la query
 puntos_esquinas = QgsVectorLayer("Point", "puntos_esquinas", "memory")
-crs2 = puntos_esquinas.crs()
-crs2.createFromId(32613)
-puntos_esquinas.setCrs(crs2)
+crs = puntos_esquinas.crs()
+crs.createFromId(32613)
+puntos_esquinas.setCrs(crs)
 
 pr = puntos_esquinas.dataProvider()
 
@@ -142,55 +130,7 @@ esquina_superior_izquierda(listado_gids)
 puntos_esquinas.commitChanges()
 puntos_esquinas.updateExtents()
 
+
 QgsMapLayerRegistry.instance().addMapLayer(puntos_esquinas)
 
-
-
-
-        
-    
-    
-
-
-
-
-
-
-
-#    QgsMapLayerRegistry.instance().addMapLayer(resultado)
-#    
-#for field in resultado.fields():
-#    print field.name(), field.typeName()
-#    
-#print resultado.wkbType() == QGis.WKBPoint
-#
-#features = resultado.getFeatures()
-#for f in features:  
-#    geom = f.geometry()
-#    attrs = f.attributes()
-#    print attrs[0],attrs[1]
-#    print geom
-#    print geom.asPoint()
-    
-#gPnt = QgsGeometry.fromPoint(geom.asPoint())
-
-   
-#fet = QgsFeature()
-#fet.setGeometry(QgsGeometry.fromWkb     
-##creamos la capa que va a almacenar los puntos de la query
-#puntos_esquinas = QgsVectorLayer("Point", "puntos_esquinas", "memory")
-#crs2 = puntos_esquinas.crs()
-#crs2.createFromId(32613)
-#puntos_esquinas.setCrs(crs2)
-#
-#pr = puntos_esquinas.dataProvider()
-##Añadimos campos
-#pr.addAttributes([QgsField("id", QVariant.Int),QgsField("dis", QVariant.Double),QgsField("cve_manzana",QVariant.String)])
-  
-#activamos la edicion
-#puntos_esquinas.startEditing()
-
-#For i in range(len(Receivers)):
-#objeto = QgsFeature()
-#objeto.setGeometry(QgsGeometry.FromPoint(QgsPoint.wellKnownText(geometria)))
 
