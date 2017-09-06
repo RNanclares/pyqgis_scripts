@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import qgis.core
+from qgis import *
+from qgis.utils import *
 from PyQt4.QtCore import *
 
 def esquina_inferior_derecha(listado_gids):
@@ -111,11 +112,10 @@ for t in filas_tabla:
 #creamos la capa que va a almacenar los puntos de la query
 puntos_esquinas = QgsVectorLayer("Point", "puntos_esquinas", "memory")
 crs = puntos_esquinas.crs()
-crs.createFromId(32613)
+crs.createFromSrsId(32613)
 puntos_esquinas.setCrs(crs)
 
 pr = puntos_esquinas.dataProvider()
-
 
 puntos_esquinas.startEditing()
 #Añadimos campos
