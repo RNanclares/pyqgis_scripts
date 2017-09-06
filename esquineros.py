@@ -15,7 +15,7 @@ def esquina_inferior_derecha(listado_gids):
         crs = resultado.crs()
         crs.createFromId(32613)
         resultado.setCrs(crs)
-        if not layer.isValid:
+        if not resultado.isValid:
             print 'error'
         else:
             pass
@@ -25,7 +25,7 @@ def esquina_inferior_derecha(listado_gids):
             fet = QgsFeature()
             fet.setGeometry(QgsGeometry.fromPoint(geom.asPoint()))
             attrs = f.attributes()
-            fet.setAttributes([attrs[0],attrs[1]])
+            fet.setAttributes([1,attrs[1]])
             pr.addFeatures([fet])
     return
         
@@ -40,7 +40,7 @@ def esquina_superior_derecha(listado_gids):
         crs = resultado.crs()
         crs.createFromId(32613)
         resultado.setCrs(crs)
-        if not layer.isValid:
+        if not resultado.isValid:
             print 'error'
         else:
             pass
@@ -50,7 +50,7 @@ def esquina_superior_derecha(listado_gids):
             fet = QgsFeature()
             fet.setGeometry(QgsGeometry.fromPoint(geom.asPoint()))
             attrs = f.attributes()
-            fet.setAttributes([attrs[0],attrs[1]])
+            fet.setAttributes([2,attrs[1]])
             pr.addFeatures([fet])
     return
         
@@ -65,7 +65,7 @@ def esquina_inferior_izquierda(listado_gids):
         crs = resultado.crs()
         crs.createFromId(32613)
         resultado.setCrs(crs)
-        if not layer.isValid:
+        if not resultado.isValid:
             print 'error'
         else:
             pass
@@ -75,7 +75,7 @@ def esquina_inferior_izquierda(listado_gids):
             fet = QgsFeature()
             fet.setGeometry(QgsGeometry.fromPoint(geom.asPoint()))
             attrs = f.attributes()
-            fet.setAttributes([attrs[0],attrs[1]])
+            fet.setAttributes([3,attrs[1]])
             pr.addFeatures([fet])
     return
         
@@ -91,7 +91,7 @@ def esquina_superior_izquierda(listado_gids):
         crs = resultado.crs()
         crs.createFromId(32613)
         resultado.setCrs(crs)
-        if not layer.isValid:
+        if not resultado.isValid:
             print 'error'
         else:
             pass
@@ -101,7 +101,7 @@ def esquina_superior_izquierda(listado_gids):
             fet = QgsFeature()
             fet.setGeometry(QgsGeometry.fromPoint(geom.asPoint()))
             attrs = f.attributes()
-            fet.setAttributes([attrs[0],attrs[1]])
+            fet.setAttributes([4,attrs[1]])
             pr.addFeatures([fet])
     return
         
@@ -134,10 +134,10 @@ puntos_esquinas.startEditing()
 pr.addAttributes([QgsField("id", QVariant.Int),QgsField("dis", QVariant.Double),QgsField("cve_manzana",QVariant.String)])
 
 #Corremos las funciones
-#esquina_inferior_derecha(listado_gids)
-#esquina_superior_derecha(listado_gids)
+esquina_inferior_derecha(listado_gids)
+esquina_superior_derecha(listado_gids)
 esquina_inferior_izquierda(listado_gids)
-#esquina_superior_izquierda(listado_gids)
+esquina_superior_izquierda(listado_gids)
         
 puntos_esquinas.commitChanges()
 puntos_esquinas.updateExtents()
